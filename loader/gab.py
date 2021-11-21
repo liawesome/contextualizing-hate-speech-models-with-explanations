@@ -47,7 +47,7 @@ class GabProcessor(DataProcessor):
         examples = []
         for i, line in enumerate(f.readlines()):
             data = json.loads(line)
-            example = InputExample(text_a=data['Text'], guid='%s-%s' % (split, i))
+            example = InputExample(text_a=data['text'], guid='%s-%s' % (split, i))
 
             for j, label_group in enumerate(self.label_groups):
                 tn = 0
