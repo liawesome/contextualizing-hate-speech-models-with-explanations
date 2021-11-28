@@ -29,10 +29,11 @@ class WSProcessor(DataProcessor):
         next(reader) # skip header
         examples = []
         for i, row in enumerate(reader):
-            example = InputExample(text_a=row[2], guid='%s-%s' % (split, i))
-            label = int(float(str(row[4])))
-            example.label = label
-            examples.append(example)
+            if len(row) >4 and row[4] != ' ':
+                example = InputExample(text_a=row[2], guid='%s-%s' % (split, i))
+                label = int(float(str(row[4])))
+                example.label = label
+                examples.append(example)
         f.close()
         return examples
 
