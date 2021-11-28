@@ -30,7 +30,7 @@ class WSProcessor(DataProcessor):
         examples = []
         for i, row in enumerate(reader):
             example = InputExample(text_a=row[2], guid='%s-%s' % (split, i))
-            label = float(str(row[4]))
+            label = int(float(str(row[4])))
             example.label = label
             examples.append(example)
         f.close()
