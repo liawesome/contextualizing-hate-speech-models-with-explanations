@@ -15,7 +15,7 @@ fi
 if [[ -n "$3" ]]; then
     max_seed=$3
 else
-    max_seed=10
+    max_seed=3
 fi
 
 model_dir="runs"
