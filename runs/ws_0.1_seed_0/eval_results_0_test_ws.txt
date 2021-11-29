@@ -1,0 +1,9 @@
+acc = 0.8669165885660731
+auc_roc = 0.8545723765814934
+eval_loss = 0.47074702760095105
+eval_loss_reg = 0.0
+f1 = 0.55625
+global_step = 0
+loss = None
+precision = 0.49171270718232046
+recall = 0.6402877697841727
