@@ -33,8 +33,10 @@ class NytProcessor(DataProcessor):
         next(reader) # skip header
         examples = []
         for i, row in enumerate(reader):
-            example = InputExample(text_a=row[1], guid='%s-%s' % (split, i))
-            label = int(row[2])
+            print("row[0]:",row[0])
+            print("row[1]:",int(float(str(row[1]))))
+            example = InputExample(text_a=row[0], guid='%s-%s' % (split, i))
+            label = int(float(str(row[1])))
             example.label = label
             examples.append(example)
         f.close()
