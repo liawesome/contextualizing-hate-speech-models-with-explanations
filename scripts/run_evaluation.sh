@@ -15,7 +15,7 @@ fi
 if [[ -n "$3" ]]; then
     max_seed=$3
 else
-    max_seed=3
+    max_seed=1
 fi
 
 model_dir="runs"
@@ -34,7 +34,7 @@ fi
 while (( ${current_seed}<${max_seed} ))
 do
     #python run_model.py --do_eval --do_lower_case --data_dir ./data/majority_gab_dataset_25k/ --bert_model bert-base-uncased --max_seq_length 128 --train_batch_size 32 --learning_rate 2e-5 --num_train_epochs 5 --output_dir runs/${model_path}_seed_${current_seed} --seed ${current_seed} --task_name gab --test ${extra_args}
-    python run_model.py --do_eval --do_lower_case --data_dir ./data/project_data/ws/0.1 --bert_model bert-base-uncased --max_seq_length 128 --train_batch_size 32 --learning_rate 2e-5 --num_train_epochs 5 --output_dir ${model_dir}/${model_path}_seed_${current_seed} --seed ${current_seed} --task_name ws --test ${extra_args}
-    #python run_model.py --do_eval --do_lower_case --data_dir ./data/nyt_keyword_sample/ --bert_model bert-base-uncased --max_seq_length 128 --train_batch_size 32 --learning_rate 2e-5 --num_train_epochs 5 --output_dir runs/${model_path}_seed_${current_seed} --seed ${current_seed} --task_name nyt --test ${extra_args}
+    #python run_model.py --do_eval --do_lower_case --data_dir ./data/project_data/ws/0.1 --bert_model bert-base-uncased --max_seq_length 128 --train_batch_size 32 --learning_rate 2e-5 --num_train_epochs 5 --output_dir ${model_dir}/${model_path}_seed_${current_seed} --seed ${current_seed} --task_name ws --test ${extra_args}
+    python run_model.py --do_eval --do_lower_case --data_dir ./data/project_data/ethos/ --bert_model bert-base-uncased --max_seq_length 128 --train_batch_size 32 --learning_rate 2e-5 --num_train_epochs 5 --output_dir runs/${model_path}_seed_${current_seed} --seed ${current_seed} --task_name nyt --test ${extra_args}
     let current_seed++
 done
