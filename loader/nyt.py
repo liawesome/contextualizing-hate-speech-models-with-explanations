@@ -26,15 +26,15 @@ class NytProcessor(DataProcessor):
         :return:
         """
         if not self.subset:
-            f = open(os.path.join(data_dir, '%s.csv' % split))
+            f = open(os.path.join(data_dir, '%s.tsv' % split))
         else:
-            f = open(os.path.join(data_dir, '%s_subset.csv' % split))
+            f = open(os.path.join(data_dir, '%s_subset.tsv' % split))
         reader = csv.reader(f, delimiter=',')
         next(reader) # skip header
         examples = []
         for i, row in enumerate(reader):
-            print("row[0]:",row[0])
-            print("row[1]:",int(float(str(row[1]))))
+            #print("row[0]:",row[0])
+            #print("row[1]:",int(float(str(row[1]))))
             example = InputExample(text_a=row[0], guid='%s-%s' % (split, i))
             label = int(float(str(row[1])))
             example.label = label
