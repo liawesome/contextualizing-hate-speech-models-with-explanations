@@ -26,11 +26,12 @@ def load_data(file_path, sw_path=None, min_frequency=0, max_length=0, language='
     with open(file_path, 'r', encoding='utf-8') as f:
         print('Building dataset ...')
         start = time.time()
-        incsv = csv.reader(f)
+       # incsv = csv.reader(f)
+        incsv = csv.reader(f, delimiter='\t')
         header = next(incsv)  # Header
         label_idx = header.index('label')
-        content_idx = header.index('content')
-
+       # content_idx = header.index('content')
+        content_idx = header.index('text')
         labels = []
         sentences = []
 
@@ -58,10 +59,10 @@ def load_data(file_path, sw_path=None, min_frequency=0, max_length=0, language='
                 sent = _word_segmentation(sent)
             sentences.append(sent)
 
-            if int(line[label_idx]) < 0:
+            if int(float(str(line[label_idx]))) < 0:
                 labels.append(2)
             else:
-                labels.append(int(line[label_idx]))
+                labels.append(int(float(str(line[label_idx]))))
 
     labels = np.array(labels)
     # Real lengths
@@ -154,7 +155,7 @@ def _stop_words(path):
     return set(sw)
 
 
-def _clean_data(sent, sw, language='ch'):
+def _clean_data(sent, sw, language='en'):
     """ Remove special characters and stop words """
     if language == 'ch':
         sent = re.sub(r"[^\u4e00-\u9fa5A-z0-9！？，。]", " ", sent)
